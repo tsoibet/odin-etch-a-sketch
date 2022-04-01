@@ -56,6 +56,10 @@ buttonPanel.appendChild(createResetButton);
 
 function resetGrid() {
     let gridSize = prompt("Enter Grid Size: (integer < 100)");
+    if (gridSize > 100) {
+        resetGrid();
+        return;
+    }
     gridContainer.textContent = "";
     setGrid(gridSize); 
 }
