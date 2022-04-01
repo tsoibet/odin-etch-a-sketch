@@ -14,3 +14,10 @@ for (let i = 0; i < 16; i++) {
         gridRow.appendChild(createDiv);
     }
 }
+
+const squares = document.querySelectorAll('.square');
+squares.forEach(square => square.addEventListener('mousemove', drawPixel));
+
+function drawPixel() {
+    this.classList.add("draw");
+}

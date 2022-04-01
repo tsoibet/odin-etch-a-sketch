@@ -20,5 +20,10 @@
 .square {
     width: 40px;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid lightgrey;
+    background-color: white;
+}
+
+.draw {
+    background-color: dimgray;
 }
