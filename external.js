@@ -13,7 +13,7 @@ function setGrid(gridSize) {
             const createDiv = document.createElement('div');
             createDiv.setAttribute('id', `square-${i+1}-${j+1}`);
             createDiv.setAttribute('class', 'square');
-            // METHOD 1: ADD EVENT LISTENER TO EACH SQUARE CREATED
+            // ADD EVENT LISTENER TO EACH SQUARE CREATED
             createDiv.addEventListener('mousemove', drawPixel);
             const gridRow = document.querySelector(`#gridRow-${i+1}`);
             gridRow.appendChild(createDiv);
@@ -21,38 +21,36 @@ function setGrid(gridSize) {
     }
 }
 
-/*  
-
-METHOD 2: SELECTS ALL SQUARES AND ADD EVENT LISTENER TO EACH
-
-const squares = document.querySelectorAll('.square');
-squares.forEach(square => square.addEventListener('mousemove', drawPixel));
-
-*/
-
 function drawPixel() {
-    this.classList.add("draw");
+    this.style.backgroundColor = generateRandomColor();
+}
+
+function generateRandomColor() {
+    let r = Math.floor(Math.random()*255);
+    let g = Math.floor(Math.random()*255);
+    let b = Math.floor(Math.random()*255);
+    return `rgb(${r}, ${g}, ${b})`;
 }
 
 // CREATE CLEAR BUTTON
-const createButton = document.createElement('button');
-createButton.setAttribute('id', 'clearButton');
-createButton.textContent = "Clear";
-createButton.addEventListener('click', clearGrid);
+const clearButton = document.createElement('button');
+clearButton.setAttribute('id', 'clearButton');
+clearButton.textContent = "Clear";
+clearButton.addEventListener('click', clearGrid);
 const buttonPanel = document.querySelector('#buttonPanel');
-buttonPanel.appendChild(createButton);
+buttonPanel.appendChild(clearButton);
 
 function clearGrid() {
     const squares = document.querySelectorAll('.square');
-    squares.forEach(square => square.classList.remove("draw"));
+    squares.forEach(square => square.style.background = "white");
 }
 
 // CREATE RESET BUTTON
-createResetButton = document.createElement('button');
-createResetButton.setAttribute('id', 'resetButton');
-createResetButton.textContent = "Reset";
-createResetButton.addEventListener('click', resetGrid);
-buttonPanel.appendChild(createResetButton);
+const resetButton = document.createElement('button');
+resetButton.setAttribute('id', 'resetButton');
+resetButton.textContent = "Reset";
+resetButton.addEventListener('click', resetGrid);
+buttonPanel.appendChild(resetButton);
 
 function resetGrid() {
     let gridSize = prompt("Enter Grid Size: (integer < 100)");
